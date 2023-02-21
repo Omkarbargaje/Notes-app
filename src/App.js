@@ -1,23 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useEffect } from "react";
+import NotesContainer from "./components/NotesContainer/NotesContainer";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
+  const [notes, setNote] = React.useState(
+    JSON.parse(localStorage.getItem("notes-app")) || []
+  );
+
+  const addNote = (color) => {
+    const tempNote = [...notes];
+
+    tempNote.push({
+      id: Date.now() + Math.floor(Math.random() * 78),
+      text: "",
+      time: Date.now(),
+      color,
+    });
+    setNote(tempNote);
+  };
+
+  const deleteNote = (id) => {
+    const tempNote = [...notes];
+
+    const index = tempNote.findIndex((note) => note.id === id);
+
+    if (index < 0) return;
+
+    tempNote.splice(index, 1);
+    setNote(tempNote);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("notes-app", JSON.stringify(notes));
+  }, [notes]);
+
+  const updatetext = (text, id) => {
+    const tempNote = [...notes];
+
+    const index = tempNote.findIndex((note) => note.id === id);
+
+    if (index < 0) return;
+
+    tempNote[index].text = text;
+    setNote(tempNote);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidebar addNote={addNote} />
+      <NotesContainer
+        notes={notes}
+        deleteNote={deleteNote}
+        updatetext={updatetext}
+      />
     </div>
   );
 }
