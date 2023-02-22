@@ -45,7 +45,6 @@ function App() {
 
   React.useEffect(() => {
     localStorage.setItem("notes-app", JSON.stringify(notes));
-    console.log(notes);
   }, [notes]);
 
   const divStyle = {
