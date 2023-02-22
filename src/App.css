@@ -14,6 +14,7 @@ h1 {
   position: absolute;
   left: 1085px;
   top: 10px;
+  color: #30698e;
 }
 .custom-scroll::-webkit-scrollbar {
   width: 8px;

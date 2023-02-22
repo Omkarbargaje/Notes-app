@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div className="App" style={divStyle}>
-      <h1>project By: Omkar Bargaje</h1>
+      <h1>Project By: Omkar Bargaje</h1>
       <Sidebar addNote={addNote} />
       <NotesContainer
         notes={notes}
