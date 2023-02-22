@@ -1,5 +1,6 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React from "react";
+//import React, { useEffect } from "react";
 import NotesContainer from "./components/NotesContainer/NotesContainer";
 import Sidebar from "./components/Sidebar/Sidebar";
 
@@ -31,10 +32,6 @@ function App() {
     setNote(tempNote);
   };
 
-  useEffect(() => {
-    localStorage.setItem("notes-app", JSON.stringify(notes));
-  }, [notes]);
-
   const updatetext = (text, id) => {
     const tempNote = [...notes];
 
@@ -46,8 +43,18 @@ function App() {
     setNote(tempNote);
   };
 
+  React.useEffect(() => {
+    localStorage.setItem("notes-app", JSON.stringify(notes));
+    console.log(notes);
+  }, [notes]);
+
+  const divStyle = {
+    backgroundColor: "#dbd78b",
+  };
+
   return (
-    <div className="App">
+    <div className="App" style={divStyle}>
+      <h1>project By: Omkar Bargaje</h1>
       <Sidebar addNote={addNote} />
       <NotesContainer
         notes={notes}

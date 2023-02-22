@@ -28,7 +28,7 @@ export default function NotesContainer(props) {
             />
           ))
         ) : (
-          <h3>Your List Is Empty</h3>
+          <h3 className="Emapty-note-heading">Your List Is Empty</h3>
         )}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Note.css";
-let timeer = 500,
+let timer = 500,
   timeout;
 
 export default function Note(props) {
@@ -41,18 +41,19 @@ export default function Note(props) {
 
   const debounce = (func) => {
     clearTimeout(timeout);
-    timeout = setTimeout(func, timeer);
+    timeout = setTimeout(func, timer);
   };
 
   const updatetext = (text, id) => {
-    debounce(() => props.updateText(text, id));
+    debounce(() => props.updatetext(text, id));
   };
 
+  console.log(props);
   return (
     <div className="note" style={{ backgroundColor: props.note.color }}>
       <textarea
         className="note-text"
-        defaultValue={props.note.value}
+        defaultValue={props.note.text}
         onChange={(event) => updatetext(event.target.value, props.note.id)}
       />
       <div className="footer">
