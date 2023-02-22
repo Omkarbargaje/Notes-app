@@ -25,10 +25,11 @@ export default function Note(props) {
     ];
 
     let hrs = date.getHours();
+
     let amPm = hrs > 12 ? "PM" : "AM";
 
     hrs = hrs ? hrs : 12;
-    hrs = hrs > 12 ? (hrs = 24 - hrs) : hrs;
+    hrs = hrs > 12 ? (hrs = hrs - 12) : hrs;
 
     let min = date.getMinutes();
     min = min < 10 ? "0" + min : min;
@@ -36,7 +37,7 @@ export default function Note(props) {
     let day = date.getDate();
     const month = monthNames[date.getMonth()];
 
-    return `${hrs}:${min} ${amPm} ${day} ${month} ${date.getFullYear()} `;
+    return `${hrs}:${min} ${amPm} ${day} ${month} ${date.getFullYear()}  ${hrs} `;
   };
 
   const debounce = (func) => {
